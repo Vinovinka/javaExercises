@@ -31,8 +31,11 @@ public class Solution {
             String markTwainOutput = getBook().getTitle() + " was written by " + author;
 
             String output = "output";
-            //Add your code here
-
+            if(this instanceof MarkTwainBook) {
+                output = markTwainOutput;
+            } else if(this instanceof AgathaChristieBook ) {
+                output = agathaChristieOutput;
+            }
             return output;
         }
 
@@ -43,18 +46,41 @@ public class Solution {
 
     public static class MarkTwainBook extends Book {
 
+        String title;
+
         public MarkTwainBook(String author) {
-            super(author);
+            super("Mark Twain");
+            this.title = author;
         }
 
         @Override
-        public Book getBook() {
-            return null;
+        public MarkTwainBook getBook() {
+            return this;
         }
 
         @Override
         public String getTitle() {
-            return null;
+            return title;
+        }
+    }
+
+    public static class AgathaChristieBook extends Book {
+
+        String title;
+
+        public AgathaChristieBook(String author) {
+            super("Agatha Christie");
+            this.title = author;
+        }
+
+        @Override
+        public AgathaChristieBook getBook() {
+            return this;
+        }
+
+        @Override
+        public String getTitle() {
+            return title;
         }
     }
 }
